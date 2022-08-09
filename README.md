@@ -1,11 +1,3 @@
-## Eroonjumeista.fi-tietokannan hallintaohjelma
+## Component Library
 
--  NextJS
--  TypeScript
--  Eslint + Prettier
--  Styled Components
--  Next-Themes
--  Framer Motion
--  Prisma
--  Cypress
--  Context template
+Reusable Components For React Projects With Typescript
