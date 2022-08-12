@@ -1,0 +1,17 @@
+.button {
+   --background-color: blueviolet;
+   --background-hover-color: rgb(82, 0, 158);
+   margin-top: 16px;
+   padding: 0.5em 1em;
+   border-radius: 6px;
+   background-color: var(--background-color);
+   color: #fff;
+   font-weight: 600;
+}
+
+.button:hover,
+.button:focus {
+   cursor: pointer;
+   background-color: var(--background-hover-color);
+   outline: none;
+}
