@@ -39,12 +39,14 @@
    cursor: pointer;
 }
 
-.checkbox:focus {
+.checkbox:focus,
+.checkbox:hover {
    outline-width: 3px;
    outline-color: var(--primary-color);
 }
 
-.checkbox:checked:focus {
+.checkbox:checked:focus,
+.checkbox:checked:hover {
    background-color: var(--primary-dark-color);
    outline-color: var(--primary-dark-color);
 }
