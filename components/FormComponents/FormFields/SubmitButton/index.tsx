@@ -1,3 +1,4 @@
+import { useFormContext } from "react-hook-form";
 import styles from "./submitButton.module.css";
 
 interface Props {
@@ -5,5 +6,12 @@ interface Props {
 }
 
 export default function SubmitButton({ label }: Props) {
-   return <button className={styles.button}>{label}</button>;
+   const {
+      formState: { errors },
+   } = useFormContext();
+   return (
+      <button className={styles.button} data-disabled={Object.keys(errors).length > 0}>
+         {label}
+      </button>
+   );
 }

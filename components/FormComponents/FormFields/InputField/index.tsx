@@ -7,7 +7,7 @@ import styles from "./inputField.module.css";
 interface InputFieldProps extends ComponentProps<"input"> {
    name: string;
    label: string;
-   showModified?: boolean;
+   required?: boolean;
 }
 
 // Render error messages
@@ -15,22 +15,22 @@ const renderError = ({ message }: { message: string }) => <p className={styles.e
 
 // Complex field styles
 const invalidInputStyle = `${styles.input} ${styles.invalid}`;
-const modifiedInputStyle = `${styles.input} ${styles.modified}`;
+const requiredLabelStyle = `${styles.label} ${styles.required}`;
 
-const InputField = ({ name, label, showModified, ...rest }: InputFieldProps) => {
+const InputField = ({ name, label, required, ...rest }: InputFieldProps) => {
    // Get react-hook-form methods from the form context
    const {
       register,
-      formState: { errors, dirtyFields },
+      formState: { errors },
    } = useFormContext();
    // Handle Attributes
    const id = rest.id ? rest.id : name;
    const isInvalid = !!errors[name];
-   const isModified = showModified && !!dirtyFields[name];
-   const inputClassName = isInvalid ? invalidInputStyle : isModified ? modifiedInputStyle : styles.input;
+   const labelClassName = required ? requiredLabelStyle : styles.label;
+   const inputClassName = isInvalid ? invalidInputStyle : styles.input;
    return (
       <div className={styles.container}>
-         <label className={styles.label} htmlFor={id}>
+         <label className={labelClassName} htmlFor={id}>
             {label}
          </label>
          <input className={inputClassName} id={id} aria-invalid={isInvalid} {...register(name)} {...rest} />

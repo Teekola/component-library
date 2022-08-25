@@ -5,17 +5,37 @@
    padding: 0 2px 2px 2px;
 }
 
-.input {
+.fileName {
+   cursor: pointer;
+   display: inline-block;
+   width: 80%;
+   padding-right: 1rem;
+   background: none;
+   white-space: nowrap;
+   outline: none;
+   pointer-events: none;
+}
+
+.fileSize {
+   color: var(--c-text-secondary);
+}
+
+.browse {
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+   background-color: var(--c-field-background);
    padding: 2px 8px;
    outline: 2px solid var(--c-field-outline);
    border-radius: 4px;
 }
 
-.input::placeholder {
-   opacity: 0.25;
+.browse:hover {
+   cursor: pointer;
+   background-color: var(--c-field-background-hover);
 }
 
-.input:focus {
+.browse:focus {
    outline-width: 3px;
    outline-color: var(--c-field-outline-focus);
 }

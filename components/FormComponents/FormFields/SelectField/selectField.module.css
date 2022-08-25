@@ -1,9 +1,4 @@
 .container {
-   --outline-color: #bbc;
-   --background-color: #eee;
-   --focus-color: blueviolet;
-   --invalid-color: tomato;
-   --modified-color: orange;
    display: flex;
    flex-direction: column;
    gap: 4px;
@@ -11,20 +6,21 @@
 }
 
 .select {
-   outline: 2px solid var(--outline-color);
+   outline: 2px solid var(--c-field-outline);
    border-radius: 4px;
-   background-color: var(--background-color);
+   background-color: var(--c-field-background);
    padding: 2px 8px;
    border-right: 8px solid transparent;
 }
 
 .select:hover {
    cursor: pointer;
+   background-color: var(--c-field-background-hover);
 }
 
 .select:focus {
    outline-width: 3px;
-   outline-color: var(--focus-color);
+   outline-color: var(--c-field-outline-focus);
 }
 
 .option {
@@ -35,13 +31,18 @@
 }
 
 .invalid {
-   outline-color: var(--invalid-color) !important;
+   outline-color: var(--c-invalid) !important;
 }
 
 .modified {
-   outline-color: var(--modified-color) !important;
+   outline-color: var(--c-modified);
 }
 
 .errorMessage {
-   color: var(--invalid-color);
+   color: var(--c-invalid);
+}
+
+.required::after {
+   content: " *";
+   color: var(--c-invalid);
 }

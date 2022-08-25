@@ -1,0 +1,25 @@
+.form {
+   --c-accent: var(--c-primary-500);
+   --c-accent-hover: var(--c-primary-300);
+
+   --c-disabled: var(--c-primary-900);
+   --c-invalid: var(--c-error);
+   --c-modified: var(--c-warning);
+
+   --c-field-outline: var(--c-gray-400);
+   --c-field-outline-focus: var(--c-accent);
+   --c-field-background: var(--c-gray-600);
+   --c-field-background-hover: var(--c-gray-500);
+   --c-text-secondary: var(--c-gray-300);
+
+   --c-checkmark: var(--c-white);
+   --c-checkbox: var(--c-white);
+   --c-checkbox-checked: var(--c-accent);
+   --c-checkbox-checked-hover: var(--c-accent-hover);
+
+   min-width: 16ch;
+   max-width: 45ch;
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}

@@ -8,7 +8,7 @@ interface InputFieldProps extends ComponentProps<"select"> {
    name: string;
    label: string;
    options: string[];
-   showModified?: boolean;
+   required?: boolean;
 }
 
 // Render error messages
@@ -16,22 +16,22 @@ const renderError = ({ message }: { message: string }) => <p className={styles.e
 
 // Complex field styles
 const invalidSelectStyle = `${styles.select} ${styles.invalid}`;
-const modifiedSelectStyle = `${styles.select} ${styles.modified}`;
+const requiredLabelStyle = `${styles.label} ${styles.required}`;
 
-const SelectField = ({ name, label, options, showModified, ...rest }: InputFieldProps) => {
+const SelectField = ({ name, label, options, required, ...rest }: InputFieldProps) => {
    // Get react-hook-form methods from the form context
    const {
       register,
-      formState: { errors, dirtyFields },
+      formState: { errors },
    } = useFormContext();
    // Handle Attributes
    const id = rest.id ? rest.id : name;
    const isInvalid = !!errors[name];
-   const isModified = showModified && !!dirtyFields[name];
-   const selectClassName = isInvalid ? invalidSelectStyle : isModified ? modifiedSelectStyle : styles.select;
+   const selectClassName = isInvalid ? invalidSelectStyle : styles.select;
+   const labelClassName = required ? requiredLabelStyle : styles.label;
    return (
       <div className={styles.container}>
-         <label className={styles.label} htmlFor={id}>
+         <label className={labelClassName} htmlFor={id}>
             {label}
          </label>
          <select className={selectClassName} id={id} aria-invalid={isInvalid} {...register(name)} {...rest}>

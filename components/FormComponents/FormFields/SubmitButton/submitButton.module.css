@@ -1,10 +1,8 @@
 .button {
-   --background-color: blueviolet;
-   --background-hover-color: rgb(82, 0, 158);
-   margin-top: 16px;
+   margin-top: 1.8rem;
    padding: 0.5em 1em;
    border-radius: 6px;
-   background-color: var(--background-color);
+   background-color: var(--c-accent);
    color: #fff;
    font-weight: 600;
 }
@@ -12,6 +10,10 @@
 .button:hover,
 .button:focus {
    cursor: pointer;
-   background-color: var(--background-hover-color);
+   background-color: var(--c-accent-hover);
    outline: none;
+}
+
+.button[data-disabled="true"] {
+   background-color: var(--c-disabled);
 }

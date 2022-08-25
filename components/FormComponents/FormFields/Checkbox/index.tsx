@@ -9,6 +9,7 @@ interface CheckboxProps extends ComponentProps<"input"> {
    label: string;
    showModified?: boolean;
    checkboxRight?: boolean;
+   required?: boolean;
 }
 
 // Render error messages
@@ -17,9 +18,9 @@ const renderError = ({ message }: { message: string }) => <p className={styles.e
 // Complex field styles
 const invalidCheckboxStyle = `${styles.checkbox} ${styles.invalid}`;
 const modifiedCheckboxStyle = `${styles.checkbox} ${styles.modified}`;
-const checkboxRightContainerStyle = `${styles.container} ${styles.right}`;
+const labelRightStyle = `${styles.label} ${styles.right}`;
 
-const Checkbox = ({ name, label, showModified, checkboxRight, ...rest }: CheckboxProps) => {
+const Checkbox = ({ name, label, showModified, checkboxRight, required, ...rest }: CheckboxProps) => {
    // Get react-hook-form methods from the form context
    const {
       register,
@@ -30,13 +31,11 @@ const Checkbox = ({ name, label, showModified, checkboxRight, ...rest }: Checkbo
    const isInvalid = !!errors[name];
    const isModified = showModified && !!dirtyFields[name];
    const inputClassName = isInvalid ? invalidCheckboxStyle : isModified ? modifiedCheckboxStyle : styles.checkbox;
-   const containerClassName = checkboxRight ? checkboxRightContainerStyle : styles.container;
+   let labelClassName = checkboxRight ? labelRightStyle : styles.label;
+   if (required) labelClassName += ` ${styles.required}`;
    return (
-      <>
-         <div className={containerClassName}>
-            <label className={styles.label} htmlFor={id}>
-               {label}
-            </label>
+      <div>
+         <label className={labelClassName} htmlFor={id}>
             <input
                className={inputClassName}
                id={id}
@@ -45,9 +44,10 @@ const Checkbox = ({ name, label, showModified, checkboxRight, ...rest }: Checkbo
                {...register(name)}
                {...rest}
             />
-         </div>
+            {label}
+         </label>
          <ErrorMessage errors={errors} name={name} render={renderError} />
-      </>
+      </div>
    );
 };
 export default Checkbox;
